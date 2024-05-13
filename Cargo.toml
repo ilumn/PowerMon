@@ -1,0 +1,26 @@
+[package]
+name = "PowerMon"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+battery = "0.7.8"
+uom = "0.36.0"
+image = "0.25.1"
+tray-icon = "0.13.5"
+winit = "0.30.0"
+
+[build-dependencies]
+embed-resource = "2.3"
+
+[build]
+target = "x86_64-pc-windows-msvc"
+# ^ v       stuff for making it not spawn a console window when run cuz winodws is odd like that
+[target.x86_64-pc-windows-msvc]
+rustflags = [
+    "-C", "link-args=/SUBSYSTEM:WINDOWS",
+]
+
+[profile.release]
+opt-level = 2
+overflow-checks = true
